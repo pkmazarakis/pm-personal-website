@@ -12,6 +12,7 @@ import Etc from './pages/Etc';
 import Presence from './pages/Presence';
 import Sakurajima from './pages/Sakurajima';
 import { ChevronsRight } from './components/Icons';
+import useSound from 'use-sound';
 
 const shouldPlayIntro = window.location.pathname === '/';
 

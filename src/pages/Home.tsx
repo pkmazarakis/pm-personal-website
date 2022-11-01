@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { Tooltip } from 'react-tippy';
+import useSound from 'use-sound';
 import PageWrapper from './PageWrapper';
 
 const BIRTH = new Date('2001-12-28T10:15:00Z');
@@ -7,10 +8,18 @@ const YEAR_MILLIS = 31556952000;
 
 const Home = () => {
   const age = useMemo(() => Math.floor((Date.now() - BIRTH.getTime()) / YEAR_MILLIS), []);
+  const soundUrl = '/p-static/sounds/cereal-killa.mp3';
 
+  const [play, { stop, isPlaying }] = useSound(soundUrl);
   return (
     <PageWrapper forceReadableWidth>
-      <h1>What I Do</h1>
+      <button
+        onClick={() => {
+          isPlaying ? stop() : play();
+        }}
+      >
+        What I Do
+      </button>
       <p>
         Phin.{' '}
         <Tooltip arrow title={'28th December 2001'}>

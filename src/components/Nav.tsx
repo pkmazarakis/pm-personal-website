@@ -71,7 +71,7 @@ const Nav = () => {
   return (
     <>
       <MobileHeader>
-        <Title>Phineas Walton</Title>
+        <Title>Platon Mazarakis</Title>
         {openOnMobile ? (
           <XIcon onClick={toggleMobileMenu} />
         ) : (
@@ -91,7 +91,7 @@ const Nav = () => {
         <Items>
           {!openOnMobile ? (
             <Row>
-              <Title>Phineas Walton</Title>
+              <Title>Platon Mazarakis</Title>
               {/* <IconButton>
               <ChevronDown />
             </IconButton> */}
@@ -100,12 +100,16 @@ const Nav = () => {
           <Row>
             <Location
               target="_blank"
-              href={doing ? `https://www.google.com/maps/search/${encodeURIComponent(doing.kv.location)}` : undefined}
+              href={
+                doing
+                  ? `https://www.google.com/maps/search/${encodeURIComponent('Manhattan, NY')}`
+                  : undefined
+              }
               rel="noreferrer"
             >
               <NavigationIcon />
               {doing?.kv.location ? (
-                doing.kv.location
+                'Manhattan, NY'
               ) : (
                 <ContentLoader
                   speed={2}
@@ -137,7 +141,7 @@ const Nav = () => {
           </div>
 
           <Icons>
-            <a href="https://twitter.com/phineyes">
+            <a href="https://twitter.com/PMazarakis">
               <TwitterLogo />
             </a>
             <a href="https://github.com/phineas">

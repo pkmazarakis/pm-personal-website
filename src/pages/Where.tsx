@@ -3,6 +3,11 @@ import Co from '../components/Co';
 import styled from 'styled-components';
 import HivenAppIcon from '../assets/images/hiven-app-icon.png';
 import GigglAppIcon from '../assets/images/giggl-app-icon.jpg';
+import SocialPassportAppIcon from '../assets/images/sp-app-icon.png';
+import DoNotPayAppIcon from '../assets/images/dnp-app-icon.png';
+
+import WonderAppIcon from '../assets/images/wonder-app-icon.png';
+import OXOAppIcon from '../assets/images/oxo-app-icon.png';
 import HonkAppIcon from '../assets/images/honk-app-icon.jpg';
 import Repo from '../components/Repo';
 import { Helmet } from 'react-helmet';
@@ -17,21 +22,38 @@ const Where = () => {
       <h3>Companies</h3>
       <CoWrapper>
         <Co
-          url="https://hiven.io"
-          name="Hiven"
-          iconReference={HivenAppIcon}
-          tagline="Consumer social"
-          role={'Founder & Developer'}
-          what={'I founded Hiven back in 2019 to make it easy for anyone create premium groups.'}
-          acquired
-        />
-        <Co
-          url="https://giggl.app"
-          name="Giggl"
-          iconReference={GigglAppIcon}
+          url="https://socialpassport.app"
+          name="Social Passport"
+          iconReference={SocialPassportAppIcon}
           tagline="Consumer social"
           role={'CEO, Co-founder & Developer'}
-          what={'I co-founded Giggl back in early 2020 to re-create being together IRL, online'}
+          what={'I founded social passport to connect college students with one click'}
+        />
+        <Co
+          url="https://donotpay.com"
+          name="Do Not Pay"
+          iconReference={DoNotPayAppIcon}
+          tagline="Consumer"
+          role={'Product Developer'}
+          what={'Created a suite of products to boost growth and app use'}
+        />
+        <Co
+          url="https://joinoxo.com"
+          name="OXO"
+          iconReference={OXOAppIcon}
+          tagline="Enterprise"
+          role={'Software Engineer'}
+          what={
+            'Built multiple products to deliver ƒluid rental experience for drivers and owners. Led growth efforts to 7x user base'
+          }
+        />
+        <Co
+          url="https://wonderverse.xyz"
+          name="Wonderverse"
+          iconReference={WonderAppIcon}
+          tagline="Consumer social"
+          role={'Software Engineer'}
+          what={'Worked on multiple projects to '}
         />
         <Co
           url="https://honk.me"
