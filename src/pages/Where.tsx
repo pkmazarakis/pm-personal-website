@@ -1,14 +1,13 @@
 import PageWrapper from './PageWrapper';
 import Co from '../components/Co';
 import styled from 'styled-components';
-import HivenAppIcon from '../assets/images/hiven-app-icon.png';
-import GigglAppIcon from '../assets/images/giggl-app-icon.jpg';
 import SocialPassportAppIcon from '../assets/images/sp-app-icon.png';
 import DoNotPayAppIcon from '../assets/images/dnp-app-icon.png';
 
 import WonderAppIcon from '../assets/images/wonder-app-icon.png';
 import OXOAppIcon from '../assets/images/oxo-app-icon.png';
-import HonkAppIcon from '../assets/images/honk-app-icon.jpg';
+import RaymetricsIcon from '../assets/images/RaymetricsLogo.png';
+
 import Repo from '../components/Repo';
 import { Helmet } from 'react-helmet';
 
@@ -16,10 +15,11 @@ const Where = () => {
   return (
     <PageWrapper>
       <Helmet>
-        <title>Where</title>
+        <title>Experiences</title>
       </Helmet>
-      <h1>Where I've Done It</h1>
-      <h3>Companies</h3>
+      <h1>/experiences</h1>
+      <h2>Where I've worked</h2>
+
       <CoWrapper>
         <Co
           url="https://socialpassport.app"
@@ -53,42 +53,32 @@ const Where = () => {
           iconReference={WonderAppIcon}
           tagline="Consumer social"
           role={'Software Engineer'}
-          what={'Worked on multiple projects to '}
+          what={
+            'Worked on multiple projects to build the best productivity tools for DAOs and workspaces'
+          }
         />
         <Co
-          url="https://honk.me"
-          name="Honk"
-          iconReference={HonkAppIcon}
+          url="https://raymetrics.com/"
+          name="Raymetrics"
+          iconReference={RaymetricsIcon}
           tagline="Consumer social"
-          role={'Backend Engineer'}
-          what={'I helped design and implement the realtime infrastructure at Honk using Elixir.'}
+          role={'Software Engineer'}
+          what={'Developed software for LIDAR equipment to examine the atmosphere'}
         />
       </CoWrapper>
 
-      <h3>Open-source Projects</h3>
+      <h3>Projects in development</h3>
       <Repo
-        name={'lanyard'}
-        url={'https://github.com/phineas/lanyard'}
-        primaryLanguage={'Elixir'}
-        description="Expose your Discord presence to an API in <10 seconds (used on this site)"
+        name={'social passport'}
+        url={'https://socialpassport.app'}
+        primaryLanguage={'react - firebase - node'}
+        description="Connect college students with one tap"
       />
       <Repo
-        name={'domain-lookup-tree'}
-        url={'https://github.com/phineas/domain-lookup-tree'}
-        primaryLanguage={'Rust'}
-        description="A tree structure in Rust optimized for looking up domain names, with wildcard support"
-      />
-      <Repo
-        name={'node_compass'}
-        url={'https://github.com/hivenapp/node_compass'}
-        primaryLanguage={'Elixir'}
-        description="Automatic hash ring management for Elixir nodes"
-      />
-      <Repo
-        name={'phineas.io'}
-        url={'https://github.com/phineas/phineas.io'}
-        primaryLanguage={'TypeScript'}
-        description="This very website"
+        name={'studyo'}
+        url={'https://studyo-frontend.vercel.app/'}
+        primaryLanguage={'react - postgres - node'}
+        description="A todo list x calendar collab"
       />
     </PageWrapper>
   );

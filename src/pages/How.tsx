@@ -8,27 +8,29 @@ import {
   SolidityLogo,
   TypescriptLogo,
 } from '../components/Icons';
+import PostgresLogo from '../assets/images/PostgresLogo.png';
 import { Helmet } from 'react-helmet';
 
 const How = () => {
   return (
     <PageWrapper>
       <Helmet>
-        <title>How</title>
+        <title>Languages</title>
       </Helmet>
-      <h1>How I Do It</h1>
+      <h1>/languages</h1>
+      <h2>Languages I use</h2>
       <p>
         I highly leverage new bleeding-edge technologies and languages like Elixir to stay on top of
         the game. You can find a list of my most-used technologies below.
       </p>
 
-      <Technology
+      {/* <Technology
         color="#9c1fa5"
         icon={<ElixirLogo />}
         name="Elixir"
         type="Realtime, Backend"
         useCase={'Building fault-tolerant realtime systems that scale out across multiple nodes'}
-      />
+      /> */}
 
       <Technology
         color="#232340"
@@ -39,13 +41,11 @@ const How = () => {
       />
 
       <Technology
-        color="#dea584"
-        icon={<RustLogo />}
-        name="Rust"
+        color="rgb(39, 118, 192)"
+        icon={<ReactLogo />}
+        name="Postgres"
         type="Backend, System"
-        useCase={
-          'Optimizing parts of Elixir code using Rust NIFs and writing efficient system code'
-        }
+        useCase={'A powerful, open source object-relational database system'}
       />
 
       <Technology
@@ -53,16 +53,16 @@ const How = () => {
         icon={<TypescriptLogo />}
         name="TypeScript"
         type="JS Framework"
-        useCase={'Types for JS - will save your life when projects expand'}
+        useCase={'Types for JS'}
       />
 
-      <Technology
+      {/* <Technology
         color="#FF6600"
         icon={<RabbitMQLogo />}
         name="RabbitMQ"
         type="Message queue"
         useCase={'Messaging between different services in a robust & durable way'}
-      />
+      /> */}
     </PageWrapper>
   );
 };

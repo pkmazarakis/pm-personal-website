@@ -36,6 +36,7 @@ const PageWrapper = ({
       style={{
         maxWidth: forceReadableWidth ? '65ch' : undefined,
         minWidth: 0,
+        height: '100%',
         paddingBottom: '2rem',
       }}
     >

@@ -14,7 +14,8 @@ const pathnameOffsets: { [key: string]: number } = {
   '/': 0,
   '/where': 39,
   '/how': 78,
-  '/etc': 117,
+  '/more': 117,
+  '/etc': 156,
 };
 
 const Nav = () => {
@@ -135,8 +136,11 @@ const Nav = () => {
             <Page active={pathname === '/how' ? 1 : 0} to="/how">
               how I do it
             </Page>
+            <Page active={pathname === '/more' ? 1 : 0} to="/more">
+              more
+            </Page>
             <Page active={pathname === '/etc' ? 1 : 0} to="/etc">
-              more + contact
+              contact
             </Page>
           </div>
 
@@ -144,10 +148,10 @@ const Nav = () => {
             <a href="https://twitter.com/PMazarakis">
               <TwitterLogo />
             </a>
-            <a href="https://github.com/phineas">
+            <a href="https://github.com/pkmazarakis">
               <GitHubLogo />
             </a>
-            <a href="https://keybase.io/phineas">
+            <a href="https://www.socialpassport.me/profile/5DXzRmjEtvX4bvkQXq0dqJLPRC02">
               <KeyIcon />
             </a>
           </Icons>

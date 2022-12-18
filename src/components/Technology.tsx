@@ -9,7 +9,7 @@ const Technology = ({
   useCase,
 }: {
   color: string;
-  icon: ReactElement;
+  icon: any;
   name: string;
   type: string;
   useCase: string;

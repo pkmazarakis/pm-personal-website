@@ -24,9 +24,9 @@ const Repo = ({
             {primaryLanguage}{' '}
             <LanguageColorBlip
               color={
-                primaryLanguage === 'Elixir'
+                primaryLanguage === 'react - postgres - node'
                   ? '#9c1fa5'
-                  : primaryLanguage === 'TypeScript'
+                  : primaryLanguage === 'react - firebase - node'
                   ? '#007acc'
                   : primaryLanguage === 'Rust'
                   ? '#dea584'

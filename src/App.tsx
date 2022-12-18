@@ -13,6 +13,8 @@ import Presence from './pages/Presence';
 import Sakurajima from './pages/Sakurajima';
 import { ChevronsRight } from './components/Icons';
 import useSound from 'use-sound';
+import More from './pages/More';
+import { createTheme, ThemeProvider } from '@mui/material';
 
 const shouldPlayIntro = window.location.pathname === '/';
 
@@ -45,7 +47,7 @@ function App() {
 
   return (
     <Wrapper>
-      <Helmet defaultTitle={'Phineas Walton'} titleTemplate={'%s • Phineas'} />
+      <Helmet defaultTitle={'Platon Mazarakis'} titleTemplate={'%s • Platon'} />
       {shouldPlayIntro ? (
         <SuccessiveTypeContainer
           transition={{ duration: 0.85 }}
@@ -59,7 +61,7 @@ function App() {
           <SuccessiveType
             onEnd={onIntroEnd}
             words={
-              "Software was meant to be light and feel effortless to use. As we're all developing new products so rapidly, bloat in our code is catching up with us. I design simple but effective, highly-scalable and realtime products for the future."
+              'Welcome... this is a brief glimpse into the projects I have worked on in the past.'
             }
             speed={1}
             userSkipped={introEnded}
@@ -73,31 +75,46 @@ function App() {
         id="stars"
       />
 
-      <MainContent
-        transition={{ duration: 0.85 }}
-        initial={false}
-        animate={{ y: !introEnded ? window.innerHeight : 0 }}
-      >
-        <Router>
-          <Nav />
+      <ThemeProvider theme={theme}>
+        <MainContent
+          transition={{ duration: 0.85 }}
+          initial={false}
+          animate={{ y: !introEnded ? window.innerHeight : 0 }}
+        >
+          <Router>
+            <Nav />
 
-          <ContentWrapper>
-            <AnimatePresence>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/where" component={Where} />
-                <Route exact path="/how" component={How} />
-                <Route exact path="/etc" component={Etc} />
-                <Route exact path="/presence" component={Presence} />
-                <Route exact path="/sakuraji.ma" component={Sakurajima} />
-              </Switch>
-            </AnimatePresence>
-          </ContentWrapper>
-        </Router>
-      </MainContent>
+            <ContentWrapper>
+              <AnimatePresence>
+                <Switch>
+                  <Route exact path="/" component={Home} />
+                  <Route exact path="/where" component={Where} />
+                  <Route exact path="/how" component={How} />
+                  <Route exact path="/etc" component={Etc} />
+                  <Route exact path="/more" component={More} />
+                </Switch>
+              </AnimatePresence>
+            </ContentWrapper>
+          </Router>
+        </MainContent>
+      </ThemeProvider>
     </Wrapper>
   );
 }
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#000000',
+    },
+    secondary: {
+      main: '#ffffff',
+    },
+    background: {
+      default: '#111111',
+    },
+  },
+});
 
 const Wrapper = styled.div`
   display: flex;
