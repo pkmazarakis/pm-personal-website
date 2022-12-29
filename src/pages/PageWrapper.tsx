@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import { ReactElement } from 'react';
 
@@ -26,6 +27,7 @@ const PageWrapper = ({
   children: ReactElement | ReactElement[];
   forceReadableWidth?: boolean;
 }) => {
+  const theme = useTheme();
   return (
     <motion.div
       initial="initial"

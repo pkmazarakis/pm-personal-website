@@ -1,3 +1,4 @@
+import { useTheme } from '@mui/material';
 import { animated, useSpring } from 'react-spring';
 import styled from 'styled-components';
 import { ExternalLinkIcon } from './Icons';
@@ -31,10 +32,12 @@ const Co = ({
     xys: [0, 0, 1],
     config: { mass: 2, tension: 350, friction: 40 },
   }));
+  const theme = useTheme();
 
   return (
     <A href={url} target="_blank" rel="noopener">
       <Container
+        theme={theme}
         onMouseMove={({ clientX: x, clientY: y }: { clientX: number; clientY: number }) =>
           set({ xys: calc(x, y) })
         }
@@ -80,7 +83,7 @@ const Container = styled(animated.div)`
   will-change: transform;
 
   &:hover {
-    background-color: #101010;
+    background-color: ${(props) => props.theme.palette.primary.main};
   }
 `;
 

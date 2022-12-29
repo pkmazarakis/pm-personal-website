@@ -9,6 +9,7 @@ import useSound from 'use-sound';
 import { useAtom } from 'jotai';
 import { doingAtom } from '../state/lanyard';
 import ContentLoader from 'react-content-loader';
+import { Switch, useTheme } from '@mui/material';
 
 const pathnameOffsets: { [key: string]: number } = {
   '/': 0,
@@ -21,6 +22,7 @@ const pathnameOffsets: { [key: string]: number } = {
 const Nav = () => {
   const history = useHistory();
   const { pathname } = useLocation();
+  const theme = useTheme();
 
   const [playSwitchPageSound] = useSound('/p-static/sounds/switch-page.mp3');
 
@@ -71,7 +73,7 @@ const Nav = () => {
 
   return (
     <>
-      <MobileHeader>
+      <MobileHeader theme={theme}>
         <Title>Platon Mazarakis</Title>
         {openOnMobile ? (
           <XIcon onClick={toggleMobileMenu} />
@@ -127,21 +129,22 @@ const Nav = () => {
           </Row>
 
           <div ref={dragConstraintsRef}>
-            <Page active={pathname === '/' ? 1 : 0} to="/">
+            <Page active={pathname === '/' ? 1 : 0} theme={theme} to="/">
               what I do
             </Page>
-            <Page active={pathname === '/where' ? 1 : 0} to="/where">
+            <Page active={pathname === '/where' ? 1 : 0} theme={theme} to="/where">
               where I've done it
             </Page>
-            <Page active={pathname === '/how' ? 1 : 0} to="/how">
+            <Page active={pathname === '/how' ? 1 : 0} theme={theme} to="/how">
               how I do it
             </Page>
-            <Page active={pathname === '/more' ? 1 : 0} to="/more">
+            <Page active={pathname === '/more' ? 1 : 0} theme={theme} to="/more">
               more
             </Page>
-            <Page active={pathname === '/etc' ? 1 : 0} to="/etc">
+            <Page active={pathname === '/etc' ? 1 : 0} theme={theme} to="/etc">
               contact
             </Page>
+            <Switch style={{ justifyContent: 'flex-start' }} color="secondary"></Switch>
           </div>
 
           <Icons>
@@ -199,7 +202,7 @@ const MobileHeader = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 65px;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: ${(props) => props.theme.palette.primary.main};
   backdrop-filter: blur(5px);
   border-bottom: 1px solid #101010;
   flex-shrink: 0;
@@ -267,14 +270,15 @@ const Location = styled.a`
   }
 `;
 
-const Page = styled(Link)<{ active: number }>`
-  color: ${({ active }) => (active ? '#fff' : '#ccc')};
+const Page = styled(Link)<{ active: number; theme: any }>`
+  color: ${({ active, theme }) =>
+    active ? theme.palette.text.primary : theme.palette.text.secondary};
   padding: 10px 0px;
   display: flex;
 
   &:hover {
     /* background-color: #fff; */
-    color: #fff;
+    color: ${({ theme }) => theme.palette.text.primary};
   }
 `;
 

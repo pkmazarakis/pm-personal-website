@@ -4,14 +4,12 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #000;
-  color: #fff;
   overflow: hidden;
 }
 
 ::selection {
-  background-color: #ccc;
-  color: #000;
+  background-color: #000000;
+  color: #ccc;
 }
 
 code {
@@ -21,8 +19,4 @@ code {
 a {
   color: #ff65b2;
   text-decoration: none;
-}
-
-p {
-  color: #ccc;
 }

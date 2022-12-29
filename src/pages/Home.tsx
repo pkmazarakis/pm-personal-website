@@ -5,16 +5,18 @@ import PageWrapper from './PageWrapper';
 import { Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { MusicNote } from '@mui/icons-material';
+import { Helmet } from 'react-helmet';
 const BIRTH = new Date('2000-06-16T10:15:00Z');
 const YEAR_MILLIS = 31556952000;
 
 const Home = () => {
   const age = useMemo(() => Math.floor((Date.now() - BIRTH.getTime()) / YEAR_MILLIS), []);
-  const soundUrl = '/p-static/sounds/cereal-killa.mp3';
 
-  const [play, { stop, isPlaying }] = useSound(soundUrl);
   return (
     <PageWrapper forceReadableWidth>
+      <Helmet>
+        <title>Me</title>
+      </Helmet>
       <h1>/home</h1>
       <h2>About me</h2>
       <p>
@@ -32,18 +34,6 @@ const Home = () => {
         spotify playlists, or any social links which are easily curatable. Tap this
         <a href={'https://www.socialpassport.app'}> link</a> to check it out!
       </p>
-      <Fab
-        color="secondary"
-        aria-label="add"
-        size="small"
-        style={{ position: 'absolute', bottom: 16, right: 16 }}
-      >
-        <MusicNote
-          onClick={() => {
-            isPlaying ? stop() : play();
-          }}
-        />
-      </Fab>
     </PageWrapper>
   );
 };

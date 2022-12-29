@@ -1,3 +1,4 @@
+import { Typography, useTheme } from '@mui/material';
 import styled from 'styled-components';
 
 const Repo = ({
@@ -11,15 +12,16 @@ const Repo = ({
   primaryLanguage: string;
   description: string;
 }) => {
+  const theme = useTheme();
   return (
     <A href={url} target="_blank" rel="noopener">
-      <Container>
+      <Container theme={theme}>
         <Column forceWidth={150}>
-          <h5>name</h5>
+          <Typography variant="body2">name</Typography>
           <p>{name}</p>
         </Column>
         <Column forceWidth={150}>
-          <h5>language</h5>
+          <Typography variant="body2">language</Typography>
           <p>
             {primaryLanguage}{' '}
             <LanguageColorBlip
@@ -36,7 +38,7 @@ const Repo = ({
           </p>
         </Column>
         <Column noBorder>
-          <h5>description</h5>
+          <Typography variant="body2">description</Typography>
           <p>{description}</p>
         </Column>
       </Container>
@@ -69,7 +71,7 @@ const Container = styled.div`
   }
 
   &:hover {
-    background-color: #101010;
+    background-color: ${(props) => props.theme.palette.secondary.light};
   }
 `;
 

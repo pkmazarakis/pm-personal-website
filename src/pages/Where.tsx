@@ -6,6 +6,8 @@ import DoNotPayAppIcon from '../assets/images/dnp-app-icon.png';
 
 import WonderAppIcon from '../assets/images/wonder-app-icon.png';
 import OXOAppIcon from '../assets/images/oxo-app-icon.png';
+import AdvanceAppIcon from '../assets/images/advanceHealthLogo.png';
+
 import RaymetricsIcon from '../assets/images/RaymetricsLogo.png';
 
 import Repo from '../components/Repo';
@@ -36,6 +38,16 @@ const Where = () => {
           tagline="Consumer"
           role={'Product Developer'}
           what={'Created a suite of products to boost growth and app use'}
+        />
+        <Co
+          url="https://advancehealth.landen.co"
+          name="ADVANCE"
+          iconReference={AdvanceAppIcon}
+          tagline="Med Tech"
+          role={'CTO, Co-founder & Developer'}
+          what={
+            'Used Amazon Alexas as personal assistants in 3 major hospitals to remotely and efficiently take care of patients'
+          }
         />
         <Co
           url="https://joinoxo.com"

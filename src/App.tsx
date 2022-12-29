@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 import { AnimatePresence, motion } from 'framer-motion';
 import { KeyboardEvent, useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -14,12 +15,23 @@ import Sakurajima from './pages/Sakurajima';
 import { ChevronsRight } from './components/Icons';
 import useSound from 'use-sound';
 import More from './pages/More';
-import { createTheme, ThemeProvider } from '@mui/material';
+import { Button, ButtonGroup, createTheme, Fab, ThemeProvider } from '@mui/material';
+import { DarkMode, LightMode, MusicNote } from '@mui/icons-material';
+import { HotkeyContext, ThemeContext } from './utils/contexts';
+import { MainComponent } from './components/MainComponent';
+
+declare global {
+  interface Window {
+    gtag: any;
+  }
+}
 
 const shouldPlayIntro = window.location.pathname === '/';
 
 function App() {
   const [introEnded, setIntroEnded] = useState(!shouldPlayIntro);
+  const [showHotkeys, setShowHotkeys] = useState(false);
+  const [themeValue, setThemeValue] = useState('dark');
 
   const onKeyDown = (e: KeyboardEvent<HTMLDocument> & any) => {
     if ((e.keyCode === 9 || e.which === 9) && !introEnded) {
@@ -44,74 +56,171 @@ function App() {
     localStorage.setItem('v1:intro-completed', 'true');
     setIntroEnded(true);
   }, []);
+  const soundUrl = '/p-static/sounds/cereal-killa.mp3';
 
+  const [play, { stop, isPlaying }] = useSound(soundUrl);
+
+  // useHotkeys(
+  //   HOTKEYS.SHOW_SHORTCUTS,
+  //   () => {
+  //     setShowHotkeys(!showHotkeys);
+  //   },
+  //   [showHotkeys]
+  // );
   return (
     <Wrapper>
       <Helmet defaultTitle={'Platon Mazarakis'} titleTemplate={'%s • Platon'} />
-      {shouldPlayIntro ? (
-        <SuccessiveTypeContainer
-          transition={{ duration: 0.85 }}
-          animate={{ y: introEnded ? -window.innerHeight : 0 }}
+      <ThemeContext.Provider value={themeValue}>
+        <ThemeProvider
+          theme={
+            themeValue === 'light' ? lightTheme : themeValue === 'dark' ? darkTheme : grayTheme
+          }
         >
-          <ProgressContainer onClick={onIntroEnd}>
-            <h4>
-              Skip intro <ChevronsRight />
-            </h4>
-          </ProgressContainer>
-          <SuccessiveType
-            onEnd={onIntroEnd}
-            words={
-              'Welcome... this is a brief glimpse into the projects I have worked on in the past.'
-            }
-            speed={1}
-            userSkipped={introEnded}
+          {shouldPlayIntro ? (
+            <SuccessiveTypeContainer
+              transition={{ duration: 0.85 }}
+              animate={{ y: introEnded ? -window.innerHeight : 0 }}
+            >
+              <ProgressContainer onClick={onIntroEnd}>
+                <h4>
+                  Skip intro <ChevronsRight />
+                </h4>
+              </ProgressContainer>
+              <SuccessiveType
+                onEnd={onIntroEnd}
+                words={
+                  'Welcome... my name is Platon Mazarakis. I study Symbolic Systems at Stanford University with a concentration in Product Design. My focus lies in building products that bring people together and offer unique tantalizing experiences.'
+                }
+                speed={1}
+                userSkipped={introEnded}
+              />
+            </SuccessiveTypeContainer>
+          ) : null}
+
+          <motion.canvas
+            transition={{ duration: 0.85 }}
+            animate={{ opacity: introEnded ? 0 : 0.25 }}
+            id="stars"
           />
-        </SuccessiveTypeContainer>
-      ) : null}
+          <Fab
+            aria-label="add"
+            size="small"
+            style={{ position: 'absolute', bottom: 16, right: 16, backgroundColor: 'white' }}
+          >
+            <MusicNote
+              onClick={() => {
+                isPlaying ? stop() : play();
+              }}
+            />
+          </Fab>
 
-      <motion.canvas
-        transition={{ duration: 0.85 }}
-        animate={{ opacity: introEnded ? 0 : 0.25 }}
-        id="stars"
-      />
+          {/* <Fab
+        aria-label="add"
+        size="small"
+        style={{
+          position: 'absolute',
+          top: 16,
+          right: 16,
+          // opacity: 0,
+          justifyContent: 'flex-end',
+          backgroundColor: ''
+        }}
+      > */}
 
-      <ThemeProvider theme={theme}>
-        <MainContent
-          transition={{ duration: 0.85 }}
-          initial={false}
-          animate={{ y: !introEnded ? window.innerHeight : 0 }}
-        >
-          <Router>
-            <Nav />
+          {/* {themeValue === 'light' ? (
+          <LightMode
+            onClick={() => {
+              setThemeValue('dark');
+            }}
+          />
+        ) : (
+          <DarkMode
+            onClick={() => {
+              setThemeValue('light');
+            }}
+          />
+        )} */}
+          {/* </Fab>   */}
 
-            <ContentWrapper>
-              <AnimatePresence>
-                <Switch>
-                  <Route exact path="/" component={Home} />
-                  <Route exact path="/where" component={Where} />
-                  <Route exact path="/how" component={How} />
-                  <Route exact path="/etc" component={Etc} />
-                  <Route exact path="/more" component={More} />
-                </Switch>
-              </AnimatePresence>
-            </ContentWrapper>
-          </Router>
-        </MainContent>
-      </ThemeProvider>
+          <HotkeyContext.Provider value={null}>
+            <MainComponent introEnded={introEnded}>
+              <Router>
+                <Nav />
+
+                <ContentWrapper>
+                  <AnimatePresence>
+                    <Switch>
+                      <Route exact path="/" component={Home} />
+                      <Route exact path="/where" component={Where} />
+                      <Route exact path="/how" component={How} />
+                      <Route exact path="/etc" component={Etc} />
+                      <Route exact path="/more" component={More} />
+                    </Switch>
+                  </AnimatePresence>
+                </ContentWrapper>
+              </Router>
+            </MainComponent>
+          </HotkeyContext.Provider>
+        </ThemeProvider>
+      </ThemeContext.Provider>
     </Wrapper>
   );
 }
 
-const theme = createTheme({
+const lightTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#ffffff',
+    },
+    secondary: {
+      light: '#999999',
+      main: '#000000',
+    },
+    background: {
+      default: '#ffffff',
+    },
+    text: {
+      primary: '#000000',
+      secondary: '#888',
+    },
+  },
+});
+
+const grayTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#cccccc',
+    },
+    secondary: {
+      light: '#666666',
+
+      main: '#000000',
+    },
+    background: {
+      default: '#cccccc',
+    },
+    text: {
+      primary: '#000000',
+      secondary: '#ffffff',
+    },
+  },
+});
+
+const darkTheme = createTheme({
   palette: {
     primary: {
       main: '#000000',
     },
     secondary: {
+      light: '#222222',
       main: '#ffffff',
     },
     background: {
-      default: '#111111',
+      default: '#ffffff',
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#444',
     },
   },
 });
@@ -152,20 +261,6 @@ const ProgressContainer = styled.div`
 
   &:hover {
     color: #ff65b2;
-  }
-`;
-
-const MainContent = styled(motion.div)`
-  height: 100vh;
-  width: 100%;
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  overflow-y: auto;
-
-  @media (max-width: 850px) {
-    flex-direction: column;
-    /* padding-top: 65px; */
   }
 `;
 

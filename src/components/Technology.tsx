@@ -1,3 +1,4 @@
+import { Typography, useTheme } from '@mui/material';
 import { ReactElement } from 'react';
 import styled from 'styled-components';
 
@@ -14,20 +15,21 @@ const Technology = ({
   type: string;
   useCase: string;
 }) => {
+  const theme = useTheme();
   return (
-    <Container>
+    <Container theme={theme}>
       <Head color={color}>{icon}</Head>
 
       <Column forceWidth={110}>
-        <h5>name</h5>
+        <Typography variant="body2">name</Typography>
         <p>{name}</p>
       </Column>
       <Column forceWidth={200}>
-        <h5>type</h5>
+        <Typography variant="body2">type</Typography>
         <p>{type}</p>
       </Column>
       <Column noBorder>
-        <h5>use case</h5>
+        <Typography variant="body2">use case</Typography>
         <p>{useCase}</p>
       </Column>
     </Container>
@@ -50,7 +52,7 @@ const Container = styled.div`
   }
 
   &:hover {
-    background-color: #101010;
+    background-color: ${(props) => props.theme.palette.secondary.light};
   }
 `;
 
