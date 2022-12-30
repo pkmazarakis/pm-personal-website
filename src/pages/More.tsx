@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme: any) => ({
     '&:hover': {
       opacity: '50%',
       backgroundColor: 'gray',
+      cursor: 'pointer',
     },
   },
   video: {
@@ -55,7 +56,8 @@ const useStyles = makeStyles((theme: any) => ({
     padding: '12px',
     borderRadius: '4px',
     '&:hover': {
-      backgroundColor: 'gray',
+      backgroundColor: theme.palette.action.active,
+      cursor: 'pointer',
     },
   },
 }));
@@ -67,8 +69,8 @@ const More = () => {
     {
       type: 'image',
       url: SocialPassportAppIcon,
-      title: 'sp logo',
-      description: 'lovin social passport',
+      title: 'Attack on Space',
+      description: '3D modeled space fight using Blender and animative tools',
       id: 1,
     },
     {
@@ -89,36 +91,6 @@ const More = () => {
     },
   ];
 
-  interface ArtBoxProps {
-    initialColor: string;
-  }
-
-  const ArtBox: React.FC<ArtBoxProps> = ({ initialColor, children }) => {
-    const [hover, setHover] = useState<string>(initialColor);
-
-    const hoverSpring = useSpring({
-      from: { color: initialColor },
-      to: { color: hover || initialColor },
-    });
-
-    return (
-      <div
-        style={{
-          backgroundColor: hover,
-          transition: 'background-color 0.25s ease',
-          cursor: 'pointer',
-          borderRadius: '8px',
-          padding: '12px',
-          marginBottom: '12px',
-        }}
-        onMouseEnter={() => setHover('#444444')}
-        onMouseLeave={() => setHover(initialColor)}
-      >
-        {children}
-      </div>
-    );
-  };
-
   return (
     <div className={classes.root}>
       <Helmet>
@@ -126,7 +98,12 @@ const More = () => {
       </Helmet>
       {showImage ? (
         <div>
-          <img src={showImage} className={classes.image} onClick={() => setShowImage(null)} />
+          <img
+            style={{ objectFit: 'contain', height: '100vh' }}
+            src={showImage}
+            className={classes.image}
+            onClick={() => setShowImage(null)}
+          />
           <div
             className={classes.hoverDiv}
             onClick={() => {
@@ -143,7 +120,7 @@ const More = () => {
           <Grid container spacing={2}>
             {hobbies.map((item) => (
               <Grid item xs={12} sm={6} md={6} key={item.id}>
-                <ArtBox initialColor={theme.palette.primary.main}>
+                <div>
                   {item.type === 'image' ? (
                     <img
                       src={item.url}
@@ -166,7 +143,7 @@ const More = () => {
                       {item.description}
                     </Typography>
                   </div>
-                </ArtBox>
+                </div>
               </Grid>
             ))}
           </Grid>
@@ -174,9 +151,10 @@ const More = () => {
           <Grid container spacing={2}>
             {resume.map((item) => (
               <Grid item xs={12} sm={6} md={6} key={item.id}>
-                <ArtBox initialColor={theme.palette.primary.main}>
+                <div>
                   {item.type === 'image' ? (
                     <img
+                      style={{ objectFit: 'cover', height: '350px' }}
                       src={item.url}
                       className={classes.image}
                       onClick={() => setShowImage(item.url)}
@@ -195,7 +173,7 @@ const More = () => {
                     </Typography>
                     <Typography variant="body2">{item.description}</Typography>
                   </div>
-                </ArtBox>
+                </div>
               </Grid>
             ))}
           </Grid>

@@ -58,6 +58,7 @@ const Where = () => {
           what={
             'Built multiple products to deliver ƒluid rental experience for drivers and owners. Led growth efforts to 7x user base'
           }
+          whiteLogo={true}
         />
         <Co
           url="https://wonderverse.xyz"
@@ -68,14 +69,16 @@ const Where = () => {
           what={
             'Worked on multiple projects to build the best productivity tools for DAOs and workspaces'
           }
+          whiteLogo={true}
         />
         <Co
           url="https://raymetrics.com/"
           name="Raymetrics"
           iconReference={RaymetricsIcon}
-          tagline="Consumer social"
+          tagline="LIDAR Hardware"
           role={'Software Engineer'}
           what={'Developed software for LIDAR equipment to examine the atmosphere'}
+          whiteLogo={true}
         />
       </CoWrapper>
 

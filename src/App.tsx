@@ -60,6 +60,18 @@ function App() {
 
   const [play, { stop, isPlaying }] = useSound(soundUrl);
 
+  const setThemeValueToLight = () => {
+    setThemeValue('light');
+  };
+
+  const setThemeValueToGray = () => {
+    setThemeValue('gray');
+  };
+
+  const setThemeValueToDark = () => {
+    setThemeValue('dark');
+  };
+
   // useHotkeys(
   //   HOTKEYS.SHOW_SHORTCUTS,
   //   () => {
@@ -108,44 +120,20 @@ function App() {
             style={{ position: 'absolute', bottom: 16, right: 16, backgroundColor: 'white' }}
           >
             <MusicNote
+              color="action"
               onClick={() => {
                 isPlaying ? stop() : play();
               }}
             />
           </Fab>
-
-          {/* <Fab
-        aria-label="add"
-        size="small"
-        style={{
-          position: 'absolute',
-          top: 16,
-          right: 16,
-          // opacity: 0,
-          justifyContent: 'flex-end',
-          backgroundColor: ''
-        }}
-      > */}
-
-          {/* {themeValue === 'light' ? (
-          <LightMode
-            onClick={() => {
-              setThemeValue('dark');
-            }}
-          />
-        ) : (
-          <DarkMode
-            onClick={() => {
-              setThemeValue('light');
-            }}
-          />
-        )} */}
-          {/* </Fab>   */}
-
           <HotkeyContext.Provider value={null}>
             <MainComponent introEnded={introEnded}>
               <Router>
-                <Nav />
+                <Nav
+                  setThemeValueToLight={setThemeValueToLight}
+                  setThemeValueToGray={setThemeValueToGray}
+                  setThemeValueToDark={setThemeValueToDark}
+                />
 
                 <ContentWrapper>
                   <AnimatePresence>
@@ -183,6 +171,9 @@ const lightTheme = createTheme({
       primary: '#000000',
       secondary: '#888',
     },
+    action: {
+      active: '#3AC4E8',
+    },
   },
 });
 
@@ -193,7 +184,6 @@ const grayTheme = createTheme({
     },
     secondary: {
       light: '#666666',
-
       main: '#000000',
     },
     background: {
@@ -202,6 +192,9 @@ const grayTheme = createTheme({
     text: {
       primary: '#000000',
       secondary: '#ffffff',
+    },
+    action: {
+      active: '#3AC4E8',
     },
   },
 });
@@ -221,6 +214,9 @@ const darkTheme = createTheme({
     text: {
       primary: '#ffffff',
       secondary: '#444',
+    },
+    action: {
+      active: '#3AC4E8',
     },
   },
 });
@@ -270,7 +266,6 @@ const ContentWrapper = styled.div`
   width: 100%;
   box-sizing: border-box;
   font-size: 1rem;
-
   a {
     &:hover {
       text-decoration: underline;

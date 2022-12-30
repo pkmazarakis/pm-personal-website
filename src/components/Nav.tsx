@@ -4,12 +4,10 @@ import { useHistory, useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GitHubLogo, KeyIcon, MenuIcon, NavigationIcon, TwitterLogo, XIcon } from './Icons';
-import Doing from './Doing';
 import useSound from 'use-sound';
-import { useAtom } from 'jotai';
-import { doingAtom } from '../state/lanyard';
 import ContentLoader from 'react-content-loader';
-import { Switch, useTheme } from '@mui/material';
+import { Button, ButtonGroup, Switch, Typography, useTheme } from '@mui/material';
+import { SegmentedControl } from './SegmentedControl';
 
 const pathnameOffsets: { [key: string]: number } = {
   '/': 0,
@@ -19,7 +17,7 @@ const pathnameOffsets: { [key: string]: number } = {
   '/etc': 156,
 };
 
-const Nav = () => {
+const Nav = ({ setThemeValueToLight, setThemeValueToGray, setThemeValueToDark }) => {
   const history = useHistory();
   const { pathname } = useLocation();
   const theme = useTheme();
@@ -29,8 +27,6 @@ const Nav = () => {
   const [dragYOffset, setDragYOffset] = useState(0);
   const [openOnMobile, setOpenOnMobile] = useState(false);
   const [presenceActive, setPresenceActive] = useState(false);
-
-  const [doing] = useAtom(doingAtom);
 
   const dragConstraintsRef = useRef(null);
 
@@ -103,28 +99,11 @@ const Nav = () => {
           <Row>
             <Location
               target="_blank"
-              href={
-                doing
-                  ? `https://www.google.com/maps/search/${encodeURIComponent('Manhattan, NY')}`
-                  : undefined
-              }
+              href={`https://www.google.com/maps/search/${encodeURIComponent('Manhattan, NY')}`}
               rel="noreferrer"
             >
               <NavigationIcon />
-              {doing?.kv.location ? (
-                'Manhattan, NY'
-              ) : (
-                <ContentLoader
-                  speed={2}
-                  // width={"auto"}
-                  height={19}
-                  viewBox="0 0 160 25"
-                  backgroundColor="#121212"
-                  foregroundColor="#2e2e2e"
-                >
-                  <rect x="0" y="3" rx="6" ry="6" width="160" height="19" />
-                </ContentLoader>
-              )}
+              <h4 style={{ color: theme.palette.secondary.main }}>Manhattan, NY</h4>
             </Location>
           </Row>
 
@@ -144,7 +123,6 @@ const Nav = () => {
             <Page active={pathname === '/etc' ? 1 : 0} theme={theme} to="/etc">
               contact
             </Page>
-            <Switch style={{ justifyContent: 'flex-start' }} color="secondary"></Switch>
           </div>
 
           <Icons>
@@ -158,9 +136,22 @@ const Nav = () => {
               <KeyIcon />
             </a>
           </Icons>
-          <Doing
-            style={{ display: presenceActive ? 'block' : 'none' }}
-            setActive={setPresenceActive}
+          <SegmentedControl
+            id={'theme'}
+            onSegment1Tap={() => {
+              setThemeValueToLight();
+            }}
+            onSegment2Tap={() => {
+              setThemeValueToGray();
+            }}
+            onSegment3Tap={() => {
+              setThemeValueToDark();
+            }}
+            backgroundColor={undefined}
+            position={0}
+            width={200}
+            padding={''}
+            isSelected={false}
           />
         </Items>
       </Container>

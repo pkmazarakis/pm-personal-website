@@ -19,6 +19,7 @@ const Co = ({
   role,
   what,
   acquired,
+  whiteLogo,
 }: {
   url: string;
   name: string;
@@ -27,6 +28,7 @@ const Co = ({
   role: string;
   what: string;
   acquired?: boolean;
+  whiteLogo?: boolean;
 }) => {
   const [props, set] = useSpring(() => ({
     xys: [0, 0, 1],
@@ -46,7 +48,17 @@ const Co = ({
         style={{ transform: props.xys.interpolate(trans) }}
       >
         <Header>
-          <img alt={`${name} Logo`} draggable={false} src={iconReference} />
+          <img
+            alt={`${name} Logo`}
+            draggable={false}
+            src={iconReference}
+            style={{
+              backgroundColor: whiteLogo
+                ? theme.palette.secondary.light
+                : theme.palette.primary.main,
+              padding: '12px',
+            }}
+          />
           <div>
             {acquired ? <sub>acquired</sub> : null}
             <h3>
