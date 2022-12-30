@@ -84,13 +84,13 @@ const SegmentLabel = styled.div<SegmentedControlProps>`
   ${(props) =>
     props.type === 'small'
       ? css`
-          font-family: RalewayPrezi-Bold;
+          font-family: 'Monaco';
           font-size: 12px;
           line-height: 1.33;
         `
       : css`
-          font-family: RalewayPrezi-Semibold;
-          font-size: 14px;
+          font-family: 'Monaco';
+          font-size: 12px;
           line-height: 1.71;
         `}
 

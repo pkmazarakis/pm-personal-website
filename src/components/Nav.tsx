@@ -77,7 +77,7 @@ const Nav = ({ setThemeValueToLight, setThemeValueToGray, setThemeValueToDark })
           <MenuIcon onClick={toggleMobileMenu} />
         )}
       </MobileHeader>
-      <Container openOnMobile={openOnMobile}>
+      <Container openOnMobile={openOnMobile} theme={theme}>
         {!openOnMobile ? (
           <PageIndicator
             whileHover={{ width: 3 }}
@@ -173,7 +173,7 @@ const Container = styled.aside<{ openOnMobile: boolean }>`
 
   @media (max-width: 850px) {
     display: ${({ openOnMobile }) => (openOnMobile ? 'block' : 'none')};
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: ${(props) => props.theme.palette.primary.main};
     backdrop-filter: blur(7px);
     z-index: 1;
     top: 65px;
