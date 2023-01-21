@@ -31,7 +31,7 @@ const shouldPlayIntro = window.location.pathname === '/';
 function App() {
   const [introEnded, setIntroEnded] = useState(!shouldPlayIntro);
   const [showHotkeys, setShowHotkeys] = useState(false);
-  const [themeValue, setThemeValue] = useState('dark');
+  const [themeValue, setThemeValue] = useState('gray');
 
   const onKeyDown = (e: KeyboardEvent<HTMLDocument> & any) => {
     if ((e.keyCode === 9 || e.which === 9) && !introEnded) {
@@ -180,21 +180,27 @@ const lightTheme = createTheme({
 const grayTheme = createTheme({
   palette: {
     primary: {
-      main: '#cccccc',
+      main: '#232529',
+      light: '#30343C',
+      dark: '#666666',
     },
     secondary: {
-      light: '#666666',
-      main: '#000000',
+      light: '#3E4249',
+      main: '#ffffff',
     },
     background: {
       default: '#cccccc',
     },
     text: {
-      primary: '#000000',
+      primary: '#ffffff',
       secondary: '#ffffff',
     },
     action: {
       active: '#3AC4E8',
+    },
+    success: {
+      main: '#30D08D',
+      light: '#30D08D',
     },
   },
 });
@@ -226,6 +232,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100vh;
+  background-color: #232529;
 
   canvas {
     position: fixed;
@@ -249,14 +256,14 @@ const ProgressContainer = styled.div`
   vertical-align: middle;
   cursor: pointer;
   transition: color 0.2s ease;
-
+  color: #ffffff;
   svg {
     vertical-align: middle;
     height: 19px;
   }
 
   &:hover {
-    color: #ff65b2;
+    color: #3ac4e8;
   }
 `;
 

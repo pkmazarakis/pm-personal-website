@@ -61,7 +61,7 @@ const SuccessiveType = ({ words, speed, userSkipped, onEnd }: ISuccessiveTypePro
 
 const Container = styled.div`
   text-align: left;
-  color: #fff;
+  color: #232529;
   font-size: 20pt;
 `;
 

@@ -314,6 +314,6 @@ SegmentedControl.defaultProps = {
 
   icons: ['public'],
   segments: ['Light', 'Gray', 'Dark'],
-  defaultSegment: 1,
+  defaultSegment: 2,
   disabled: false,
 };
