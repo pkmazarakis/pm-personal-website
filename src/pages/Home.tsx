@@ -27,7 +27,24 @@ const Home = () => {
         y/o. Build Build Build
       </p>
       <p></p>
-      <h3>About Social Passport</h3>
+      <h3>Background</h3>
+      <p>
+        9 years of coding with experience in building products and startups for over 5 years. I've
+        worked at 4 different startups and started 3 companies. Building is central to my core and I
+        strive to get better and better with each product and feature I work on. From idea in head,
+        to drawing on paper, to designs on figma, to website in react, to marketing growth, I am
+        equipped with the experience of all tools.
+      </p>
+      <h3>Studyo</h3>
+      <p>
+        the all-in-one productivity tool that streamlines your to-do list and calendar into one
+        powerful application. With our beautiful drag and drop interface, you can build your
+        schedule instantly using your built in todo-list. Collaborate effortlessly with friends and
+        family using Studyo's one of a kind calendar sharing features. Lastly, import all your
+        meetings and events using our seamless integration with Google Calendar. Tap
+        <a href={'https://www.mystudyo.com'}> link</a> to check it out!
+      </p>
+      <h3>Social Passport</h3>
       <p>
         Share your digital profile with your fellow students instantaneously. one tap and you are
         connected. Using a QR code or an NFC enabled tag you can give your instagram, phone number,

@@ -2,6 +2,8 @@ import PageWrapper from './PageWrapper';
 import Co from '../components/Co';
 import styled from 'styled-components';
 import SocialPassportAppIcon from '../assets/images/sp-app-icon.png';
+import StudyoAppIcon from '../assets/images/studyo-app-icon.png';
+
 import DoNotPayAppIcon from '../assets/images/dnp-app-icon.png';
 
 import WonderAppIcon from '../assets/images/wonder-app-icon.png';
@@ -23,6 +25,14 @@ const Where = () => {
       <h2>Where I've worked</h2>
 
       <CoWrapper>
+        <Co
+          url="https://mystudyo.com"
+          name="Studyo"
+          iconReference={StudyoAppIcon}
+          tagline="Social Productivity"
+          role={'CEO, Co-founder & Developer'}
+          what={'Every productive day starts with studyo'}
+        />
         <Co
           url="https://socialpassport.app"
           name="Social Passport"

@@ -4,7 +4,13 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import ReactPlayer from 'react-player';
 import { useSpring } from 'react-spring';
-import SocialPassportAppIcon from '../assets/images/platon.png';
+import SpaceRender from '../assets/images/platon.png';
+import AdvanceFigma from '../assets/images/AdvanceFigma.png';
+import FivetonineFigma from '../assets/images/FivetonineFigma.png';
+
+import StudyoFigma from '../assets/images/StudyoFigma4.png';
+import SocialPassportFigma from '../assets/images/SocialPassportFigma.png';
+
 import Resume from '../assets/images/PlatonResume.png';
 
 const useStyles = makeStyles((theme: any) => ({
@@ -68,17 +74,43 @@ const More = () => {
   const hobbies = [
     {
       type: 'image',
-      url: SocialPassportAppIcon,
+      url: SpaceRender,
       title: 'Attack on Space',
       description: '3D modeled space fight using Blender and animative tools',
       id: 1,
+      link: null,
     },
     {
       type: 'image',
-      url: SocialPassportAppIcon,
-      title: 'sp logo',
-      description: 'lovin social passport',
+      url: StudyoFigma,
+      title: 'Studyo figma',
+      description: 'Initial designs for studyo. ',
       id: 1,
+      link: 'https://www.figma.com/file/boiQ4v0p0KkOmNKZ3Opiph/Studyo?node-id=46%3A2322&t=6x0Q2QezKZ4Kx4Ur-1',
+    },
+    {
+      type: 'image',
+      url: SocialPassportFigma,
+      title: 'Social Passport figma',
+      description: 'Initial designs for social passport. ',
+      id: 1,
+      link: 'https://www.figma.com/file/cUJghMGwfbo2sNkTAr1v8D/Social-Passport-Master?node-id=0%3A1&t=QZfVV89ErEX0xXGR-1',
+    },
+    {
+      type: 'image',
+      url: AdvanceFigma,
+      title: 'Advance figma',
+      description: 'Initial designs for advance.',
+      id: 1,
+      link: 'https://www.figma.com/file/KtZlotp88hLJwYhOFOlzFb/ADVANCE-Website-%2B-3D-Models?node-id=0%3A1&t=M30kBAxDZwaYDAz2-1',
+    },
+    {
+      type: 'image',
+      url: FivetonineFigma,
+      title: '5-9 figma',
+      description: 'Initial designs for 5-9. ',
+      id: 1,
+      link: null,
     },
   ];
   const resume = [
@@ -122,11 +154,15 @@ const More = () => {
               <Grid item xs={12} sm={6} md={6} key={item.id}>
                 <div>
                   {item.type === 'image' ? (
-                    <img
-                      src={item.url}
-                      className={classes.image}
-                      onClick={() => setShowImage(item.url)}
-                    />
+                    <a href={item.link}>
+                      <img
+                        src={item.url}
+                        className={classes.image}
+                        onClick={() => {
+                          setShowImage(item.url);
+                        }}
+                      />
+                    </a>
                   ) : (
                     <ReactPlayer
                       url={item.url}
