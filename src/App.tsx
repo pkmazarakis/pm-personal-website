@@ -2,7 +2,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { KeyboardEvent, useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import SuccessiveType from './components/SuccessiveType';
 import Nav from './components/Nav';
@@ -137,13 +138,13 @@ function App() {
 
                 <ContentWrapper>
                   <AnimatePresence>
-                    <Switch>
-                      <Route exact path="/" component={Home} />
-                      <Route exact path="/where" component={Where} />
-                      <Route exact path="/how" component={How} />
-                      <Route exact path="/etc" component={Etc} />
-                      <Route exact path="/more" component={More} />
-                    </Switch>
+                    <Routes>
+                      <Route path="/" element={<Home />} />
+                      <Route path="/where" element={<Where />} />
+                      <Route path="/how" element={<How />} />
+                      <Route path="/etc" element={<Etc />} />
+                      <Route path="/more" element={<More />} />
+                    </Routes>
                   </AnimatePresence>
                 </ContentWrapper>
               </Router>

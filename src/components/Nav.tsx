@@ -1,6 +1,6 @@
 import { motion, PanInfo } from 'framer-motion';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { useHistory, useLocation } from 'react-router';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { GitHubLogo, KeyIcon, MenuIcon, NavigationIcon, TwitterLogo, XIcon } from './Icons';
@@ -18,7 +18,7 @@ const pathnameOffsets: { [key: string]: number } = {
 };
 
 const Nav = ({ setThemeValueToLight, setThemeValueToGray, setThemeValueToDark }) => {
-  const history = useHistory();
+  const history = useNavigate();
   const { pathname } = useLocation();
   const theme = useTheme();
 
@@ -60,7 +60,7 @@ const Nav = ({ setThemeValueToLight, setThemeValueToGray, setThemeValueToDark })
       if (closest[0] === pathname) return;
 
       setDragYOffset(dragYOffset + info.offset.y + info.velocity.y);
-      history.push(closest[0]);
+      history(closest[0]);
     },
     [history, pageIndicatorOffset, dragYOffset, pathname]
   );
